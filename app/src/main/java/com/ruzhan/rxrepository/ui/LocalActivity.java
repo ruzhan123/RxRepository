@@ -40,8 +40,8 @@ public class LocalActivity extends AppCompatActivity {
         // local refresh userModel
         presenter.getUseLiveData().observe(this, userModel -> {
             if (userModel != null) {
-                nameTv.setText(userModel.name);
-                descTv.setText(userModel.desc);
+                nameTv.setText("name: " + userModel.name);
+                descTv.setText("desc: " + userModel.desc);
                 Toast.makeText(this, "name:  " + userModel.name +
                                 "\n" + " desc:  " + userModel.desc,
                         Toast.LENGTH_SHORT).show();
