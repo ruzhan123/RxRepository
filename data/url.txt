@@ -1,0 +1,1 @@
+https://raw.githubusercontent.com/ruzhan123/RxRepository/master/data/remote.json

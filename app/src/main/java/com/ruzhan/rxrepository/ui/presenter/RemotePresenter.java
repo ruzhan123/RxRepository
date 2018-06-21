@@ -4,12 +4,16 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 import android.util.Log;
 
+import com.ruzhan.rxrepository.db.entity.UserEntity;
 import com.ruzhan.rxrepository.model.LoadStatus;
 import com.ruzhan.rxrepository.model.UserModel;
 import com.ruzhan.rxrepository.source.RxRepository;
 import com.ruzhan.rxrepository.source.Subscriber;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * create ruzhan: 2018/6/21 10:11
@@ -24,8 +28,8 @@ public class RemotePresenter {
     public void getRemoteUser() {
         RxRepository.get().getRemoteUser()
                 .observeOn(AndroidSchedulers.mainThread())
-                .doOnError(throwable -> Log.i(TAG, "getRemoteUser doOnError: " + // handler exception
-                        throwable))
+                .doOnError(throwable -> Log.i(TAG, "getRemoteUser doOnError: " +
+                        throwable))// handler exception
                 .doOnSubscribe(disposable -> { // handler request start
                     Log.i(TAG, "getRemoteUser doOnSubscribe: ");
                     loadLiveData.setValue(LoadStatus.LOADING);
@@ -37,7 +41,24 @@ public class RemotePresenter {
                 .doOnSuccess(userModel -> { // handler request success
                     Log.i(TAG, "getRemoteUser doOnSuccess: ");
                     useLiveData.setValue(userModel);
+
+                    // save to db
+                    setUserModelToLocal(userModel);
                 })
+                .subscribe(Subscriber.create());
+    }
+
+    private void setUserModelToLocal(UserModel userModel) {
+        Flowable.create(e -> {
+            UserEntity userEntity = UserEntity.getUserEntity(userModel);
+            RxRepository.get().insertNewsList(userEntity);
+            e.onComplete();
+
+        }, BackpressureStrategy.LATEST)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnError(throwable -> Log.i(TAG, "setUserModelToLocal doOnError: "))
+                .doOnComplete(() -> Log.i(TAG, "setUserModelToLocal doOnComplete: "))
                 .subscribe(Subscriber.create());
     }
 

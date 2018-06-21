@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.ruzhan.rxrepository.ui.LocalActivity;
 import com.ruzhan.rxrepository.ui.RemoteActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,9 +16,5 @@ public class MainActivity extends AppCompatActivity {
 
     public void remoteClick(View view) {
         RemoteActivity.launch(this);
-    }
-
-    public void localClick(View view) {
-        LocalActivity.launch(this);
     }
 }

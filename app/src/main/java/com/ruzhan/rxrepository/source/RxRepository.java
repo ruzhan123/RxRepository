@@ -1,11 +1,13 @@
 package com.ruzhan.rxrepository.source;
 
+import com.ruzhan.rxrepository.db.entity.UserEntity;
 import com.ruzhan.rxrepository.model.UserModel;
 import com.ruzhan.rxrepository.source.local.ILocalDataSource;
 import com.ruzhan.rxrepository.source.local.LocalDataSourceImpl;
 import com.ruzhan.rxrepository.source.remote.IRemoteDataSource;
 import com.ruzhan.rxrepository.source.remote.RemoteDataSourceImpl;
 
+import io.reactivex.Flowable;
 import io.reactivex.Single;
 
 /**
@@ -38,5 +40,12 @@ public class RxRepository {
         return remoteDataSource.getRemoteUser();
     }
 
+    public Flowable<UserEntity> loadUserEntity(String id) {
+        return localDataSource.loadUserEntity(id);
+    }
+
+    public void insertNewsList(UserEntity userEntity) {
+        localDataSource.insertNewsList(userEntity);
+    }
 
 }

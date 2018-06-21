@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class RemoteActivity extends AppCompatActivity {
     private TextView nameTv;
     private TextView descTv;
     private TextView loadTv;
+    private Button localBtn;
 
     private RemotePresenter presenter = new RemotePresenter();
 
@@ -36,6 +39,7 @@ public class RemoteActivity extends AppCompatActivity {
         nameTv = findViewById(R.id.name_tv);
         descTv = findViewById(R.id.desc_tv);
         loadTv = findViewById(R.id.load_tv);
+        localBtn = findViewById(R.id.local_btn);
 
         // refresh userModel, update ui
         presenter.getUseLiveData().observe(this, userModel -> {
@@ -51,14 +55,20 @@ public class RemoteActivity extends AppCompatActivity {
         // request network, show loading ui
         presenter.getLoadLiveData().observe(this, loadStatus -> {
             if (loadStatus == LoadStatus.LOADING) { // loading
-                loadTv.setText("loading...");
+                loadTv.setText("remote loading...");
+                localBtn.setVisibility(View.INVISIBLE);
 
             } else if (loadStatus == LoadStatus.LOADED) { // loaded
-                loadTv.setText("loaded !");
+                loadTv.setText("remote loaded !");
+                localBtn.setVisibility(View.VISIBLE);
             }
         });
 
         // request network
         presenter.getRemoteUser();
+    }
+
+    public void localClick(View view) {
+        LocalActivity.launch(this);
     }
 }
