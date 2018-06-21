@@ -1,14 +1,26 @@
 package com.ruzhan.rxrepository.source;
 
+import com.ruzhan.rxrepository.model.UserModel;
+import com.ruzhan.rxrepository.source.local.ILocalDataSource;
+import com.ruzhan.rxrepository.source.local.LocalDataSourceImpl;
+import com.ruzhan.rxrepository.source.remote.IRemoteDataSource;
+import com.ruzhan.rxrepository.source.remote.RemoteDataSourceImpl;
+
+import io.reactivex.Single;
+
 /**
  * create ruzhan: 2018/6/21 10:08
  */
-public final class RxRepository {
+public class RxRepository {
 
     private static RxRepository INSTANCE;
 
+    private IRemoteDataSource remoteDataSource;
+    private ILocalDataSource localDataSource;
+
     private RxRepository() {
-        //no instance
+        remoteDataSource = new RemoteDataSourceImpl();
+        localDataSource = new LocalDataSourceImpl();
     }
 
     public static RxRepository get() {
@@ -20,6 +32,10 @@ public final class RxRepository {
             }
         }
         return INSTANCE;
+    }
+
+    public Single<UserModel> getRemoteUser() {
+        return remoteDataSource.getRemoteUser();
     }
 
 

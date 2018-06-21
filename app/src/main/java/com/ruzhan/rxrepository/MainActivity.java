@@ -1,11 +1,11 @@
-package com.ruzhan.rxrepository.ui;
+package com.ruzhan.rxrepository;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.ruzhan.rxrepository.R;
-import com.ruzhan.rxrepository.RemoteActivity;
+import com.ruzhan.rxrepository.ui.LocalActivity;
+import com.ruzhan.rxrepository.ui.RemoteActivity;
 
 public class MainActivity extends AppCompatActivity {
 

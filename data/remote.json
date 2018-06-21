@@ -1,4 +1,4 @@
 {
-  "name":"remote name",
-  "desc":"remote desc"
+  "name":"remote name, come from network",
+  "desc":"remote desc, come from network"
 }

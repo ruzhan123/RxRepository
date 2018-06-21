@@ -1,7 +1,7 @@
 package com.ruzhan.rxrepository.ui.presenter;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MediatorLiveData;
+import android.arch.lifecycle.MutableLiveData;
 
 import com.ruzhan.rxrepository.model.UserModel;
 
@@ -10,7 +10,7 @@ import com.ruzhan.rxrepository.model.UserModel;
  */
 public class LocalPresenter {
 
-    private MediatorLiveData<UserModel> useLiveData = new MediatorLiveData<>();
+    private MutableLiveData<UserModel> useLiveData = new MutableLiveData<>();
 
     public void getLocalUser() {
 

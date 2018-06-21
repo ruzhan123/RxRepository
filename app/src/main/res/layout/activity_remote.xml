@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RemoteActivity">
+    tools:context=".ui.RemoteActivity">
 
     <LinearLayout
         app:layout_constraintBottom_toBottomOf="parent"
@@ -17,11 +17,22 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/name_tv"
+            android:id="@+id/load_tv"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/name_tv"
+            android:layout_marginTop="32dp"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textColor="@android:color/black"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
@@ -31,7 +42,7 @@
             android:layout_gravity="center_horizontal"
             android:gravity="center"
             android:textColor="@android:color/black"
-            android:textSize="14sp"
+            android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
