@@ -1,4 +1,4 @@
 RxRepository
 ===============
 
-![](https://raw.githubusercontent.com/ruzhan123/RxRepository/master/data/RxRepository.png)
+![](https://github.com/ruzhan123/RxRepository/raw/master/gif/image.png)
