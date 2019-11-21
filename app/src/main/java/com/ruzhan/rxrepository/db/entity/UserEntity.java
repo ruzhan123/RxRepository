@@ -1,15 +1,12 @@
 package com.ruzhan.rxrepository.db.entity;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.Ignore;
-import android.arch.persistence.room.PrimaryKey;
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import com.ruzhan.rxrepository.model.UserModel;
 
-/**
- * Created by ruzhan123 on 2018/6/21.
- */
 @Entity(tableName = "user_entity")
 public class UserEntity {
 
@@ -35,8 +32,8 @@ public class UserEntity {
     public static UserEntity getUserEntity(UserModel bean) {
         UserEntity entity = new UserEntity();
         if (bean != null) {
-            entity.name = bean.name;
-            entity.desc = bean.desc;
+            entity.name = bean.getName();
+            entity.desc = bean.getDesc();
         }
         return entity;
     }
@@ -44,8 +41,8 @@ public class UserEntity {
     public static UserModel getUserModel(UserEntity entity) {
         UserModel bean = new UserModel();
         if (entity != null) {
-            bean.name = entity.name;
-            bean.desc = entity.desc;
+            bean.setName(entity.name);
+            bean.setDesc(entity.desc);
         }
         return bean;
     }
